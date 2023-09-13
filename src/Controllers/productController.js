@@ -17,3 +17,5 @@ exports.deleteProduct = async (req, res) => {
 exports.updateProduct = async (req, res) => {
   res.send("Update Product API");
 };
+
+exports.createProduct = async (req, res) => {  };
