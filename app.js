@@ -1,5 +1,5 @@
 const express = require("express");
-const router = require("./src/Routers/api");
+const router = require("./src/Routes/api");
 const app = new express();
 const bodyParser = require("body-parser");
 
@@ -40,14 +40,32 @@ const mongoose = require("mongoose");
 //! Database Connect
 const URL = `mongodb+srv://${process.env.MONGODB_USER_NAME}:${process.env.MONGODB_USER_PASSWORD}@cluster0.fsp0qs4.mongodb.net/Cart-Project?retryWrites=true&w=majority`;
 
-mongoose.connect(
-  URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  (error) => {
-    console.log("MongoDB are Connect!");
-    console.log(error);
-  }
-);
+const mongoLocal = "mongodb://127.0.0.1:27017/NEW_DATABASE_NAME";
+
+// mongoose
+//   .connect(mongoLocal, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+
+//   .then(() => console.log("Connected Successfully"))
+
+//   .catch((err) => {
+//     console.error(err);
+//   });
+
+const { MongoClient } = require("mongodb");
+const client = new MongoClient("mongodb://127.0.0.1:27017");
+client
+  .db("NEW_DATABASE_NAME")
+  .collection("Demo")
+  .find({})
+  .toArray()
+  .then((res) => {
+    console.log(res);
+    client.close();
+  })
+  .catch((err) => console.log(err));
 
 //! Frontend URL Tagging API
 app.use("/api", router);
