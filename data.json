@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Rahul",
+    "age": 22,
+    "salary": 40000,
+    "tax": 500
+  },
+  {
+    "name": "Raj",
+    "age": 32,
+    "salary": 50000,
+    "tax": 600
+  },
+  {
+    "name": "Korim",
+    "age": 42,
+    "salary": 80000,
+    "tax": 1000
+  },
+  {
+    "name": "Babu",
+    "age": 26,
+    "salary": 20000,
+    "tax": 400
+  },
+  {
+    "name": "Mira",
+    "age": 20,
+    "salary": 35000,
+    "tax": 600
+  },
+  {
+    "name": "Jitu",
+    "age": 30,
+    "salary": 40000,
+    "tax": 600
+  }
+]
