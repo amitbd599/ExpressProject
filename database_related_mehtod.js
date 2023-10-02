@@ -429,7 +429,7 @@ db.Demo.find({});
 use("NEW_DATABASE_NAME");
 db.Demo.aggregate([]);
 
-//! Get Count Value
+//! Get Count Value --
 // Use Find method
 use("NEW_DATABASE_NAME");
 db.Demo.find({}).count("total");
@@ -438,7 +438,7 @@ db.Demo.find({}).count("total");
 use("NEW_DATABASE_NAME");
 db.Demo.aggregate([{ $count: "total" }]);
 
-//! Get $sort Value
+//! Get $sort Value --
 // Use Find method
 use("NEW_DATABASE_NAME");
 db.Demo.find({}).sort({ name: 1 });
@@ -447,7 +447,7 @@ db.Demo.find({}).sort({ name: 1 });
 use("NEW_DATABASE_NAME");
 db.Demo.aggregate([{ $sort: { price: 1 } }]);
 
-//! Get $limit Value
+//! Get $limit Value --
 // Use Find method
 use("NEW_DATABASE_NAME");
 db.Demo.find({}).limit(1);
@@ -456,7 +456,7 @@ db.Demo.find({}).limit(1);
 use("NEW_DATABASE_NAME");
 db.Demo.aggregate([{ $limit: 1 }]);
 
-//! Get data using $match operator
+//! Get data using $match operator --
 use("NEW_DATABASE_NAME");
 
 // Example 1
@@ -481,17 +481,17 @@ db.Demo.aggregate([
   { $match: { $or: [{ name: "C" }, { price: { $gt: 10000 } }] } },
 ]);
 
-//! Get data using (select like)
+//! Get data using (select like) ---
 // যে নামে ডাটা চাওয়া হবে সেটি চলে আসবে।
 
 db.Demo.find({ name: /C/ });
 db.Demo.aggregate([{ $match: { name: /C/ } }]);
 
-//! Get data using $in operator
+//! Get data using $in operator --
 db.Demo.find({ name: { $in: ["C", "A"] } });
 db.Demo.aggregate([{ $match: { name: { $in: ["C", "D"] } } }]);
 
-//! Get data using $project operator
+//! Get data using $project operator ---
 // Using aggregate method
 db.Demo.aggregate([{ $project: { name: 1 } }]);
 db.Demo.aggregate([{ $project: { _id: 0, name: 1 } }]);
@@ -499,14 +499,14 @@ db.Demo.aggregate([{ $project: { _id: 0, name: 1 } }]);
 // Using find method
 db.Demo.find({}, { _id: 0, name: 1 });
 
-//! Get data using $skip & $limit operator
+//! Get data using $skip & $limit operator --
 // Using aggregate method
 db.Demo.aggregate([{ $skip: 1 }, { $limit: 3 }]);
 
 // Using find method
 db.Demo.find({}).skip(1).limit(3);
 
-//! Get data using $group operator
+//! Get data using $group operator ---
 // Using aggregate method
 db.Demo.aggregate([{ $group: { _id: "$name" } }]);
 // _id টা fix property যা দিতে হবে must. এরপর যাকে নিয়ে group করবো তাকে $... দিতে হবে

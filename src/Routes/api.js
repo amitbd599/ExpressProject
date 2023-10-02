@@ -1,22 +1,21 @@
 const express = require("express");
-const userController = require("../Controllers/userController");
 const productController = require("../Controllers/productController");
 
 const router = express.Router();
 
-//! ================ Register New User Api =================
-router.get("/register", userController.register);
-
-
 //! ================ create new product Api =================
-router.get("/create-product", productController.createProduct);
+router.post("/create-product", productController.createProduct);
 
+//! ================ Read All Products ================
+router.get("/read-product", productController.getAllProducts);
 
-router.get("/read-product", productController.readProduct);
+//! ================ Read single Products ================
+router.get("/read-single-product/:id", productController.getSingleProducts);
 
- 
+//! ================ Delete Products ================
+router.delete("/delete-product/:id", productController.deleteProduct);
 
-
-
+//! ================ Update Products ================
+router.post("/update-product/:id", productController.updateProduct);
 
 module.exports = router;

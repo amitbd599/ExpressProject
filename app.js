@@ -1,4 +1,5 @@
 const express = require("express");
+const { MongoClient } = require("mongodb");
 const router = require("./src/Routes/api");
 const app = new express();
 const bodyParser = require("body-parser");
@@ -38,34 +39,34 @@ app.use(limiter);
 const mongoose = require("mongoose");
 
 //! Database Connect
-const URL = `mongodb+srv://${process.env.MONGODB_USER_NAME}:${process.env.MONGODB_USER_PASSWORD}@cluster0.fsp0qs4.mongodb.net/Cart-Project?retryWrites=true&w=majority`;
+const atlasURL = `mongodb+srv://${process.env.MONGODB_USER_NAME}:${process.env.MONGODB_USER_PASSWORD}@cluster0.fsp0qs4.mongodb.net/Cart-Project?retryWrites=true&w=majority`;
 
-const mongoLocal = "mongodb://127.0.0.1:27017/NEW_DATABASE_NAME";
+const mongoLocal = "mongodb://127.0.0.1:27017/CURD";
 
-// mongoose
-//   .connect(mongoLocal, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-
-//   .then(() => console.log("Connected Successfully"))
-
-//   .catch((err) => {
-//     console.error(err);
-//   });
-
-const { MongoClient } = require("mongodb");
-const client = new MongoClient("mongodb://127.0.0.1:27017");
-client
-  .db("NEW_DATABASE_NAME")
-  .collection("Demo")
-  .find({})
-  .toArray()
-  .then((res) => {
-    console.log(res);
-    client.close();
+mongoose
+  .connect(mongoLocal, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
-  .catch((err) => console.log(err));
+
+  .then(() => console.log("Connected Successfully"))
+
+  .catch((err) => {
+    console.error(err);
+  });
+
+//! MongoClient -- Direct MongoDB use
+// const client = new MongoClient("mongodb://127.0.0.1:27017");
+// client
+//   .db("NEW_DATABASE_NAME")
+//   .collection("Demo")
+//   .find({})
+//   .toArray()
+//   .then((res) => {
+//     console.log(res);
+//     client.close();
+//   })
+//   .catch((err) => console.log(err));
 
 //! Frontend URL Tagging API
 app.use("/api", router);
